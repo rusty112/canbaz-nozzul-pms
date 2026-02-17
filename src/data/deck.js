@@ -68,7 +68,7 @@ const T_BVALVE = [
 ];
 
 const T_CV_NRV = [
-    { j: "Overhaul non-return valve (clean, inspect seat/disc)", p: "Eng/2E", i: "2 yr" },
+    { j: "Overhaul non-return valve (clean, inspect seat/disc)", p: "Eng/2E", i: "6 mo" },
     { j: "Check/test non-return function", p: "Eng/2E", i: "6 mo" },
     { j: "Inspect valve body for corrosion/damage", p: "Deck/CM", i: "6 mo" },
     { j: "Verify remote operation (if applicable)", p: "Eng/2E", i: "3 mo" },

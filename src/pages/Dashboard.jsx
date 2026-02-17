@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Activity, Anchor, Shield, AlertTriangle, CheckCircle, Ship, AlertOctagon } from 'lucide-react';
 import clsx from 'clsx';
@@ -6,6 +7,7 @@ import { parse, isBefore } from 'date-fns';
 export default function Dashboard() {
     const { user, role, engineTree, deckTree, ships, vid, complianceData } = useApp();
 
+    const [engineStatus, setEngineStatus] = useState("STOPPED");
     const currentShip = ships.find(s => s.id === vid) || ships[0];
 
     // Calculate Stats
@@ -136,7 +138,21 @@ export default function Dashboard() {
                         Vessel Operational Status
                     </h3>
                     <div className="space-y-4">
-                        <StatusRow label="Main Engine Status" value="Running" status="good" />
+                        {/* Interactive Main Engine Status */}
+                        <div className="flex justify-between items-center p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors">
+                            <span className="text-sm font-medium text-blue-200/70">Main Engine Status</span>
+                            <button
+                                onClick={() => setEngineStatus(prev => prev === "STOPPED" ? "RUNNING" : "STOPPED")}
+                                className={clsx("text-sm font-bold font-mono px-3 py-1 rounded transition-all outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-black focus:ring-white/20",
+                                    engineStatus === "RUNNING"
+                                        ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                                        : "bg-red-500/20 text-red-500 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.3)] animate-pulse"
+                                )}
+                            >
+                                {engineStatus}
+                            </button>
+                        </div>
+
                         <StatusRow label="Next Port" value="Istanbul, TR" status="white" />
                         <StatusRow label="ETA" value="24 Feb 2026 14:00" status="white" />
                         <StatusRow label="PMS Certification" value="Valid until Dec 2026" status="good" />

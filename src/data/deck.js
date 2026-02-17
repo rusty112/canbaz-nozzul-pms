@@ -266,6 +266,19 @@ export const DECK_TREE = [
                     { j: "Inspect/test isolating valves on fireline", p: "Deck/CM", i: "3 mo" },
                 ]
             },
+            {
+                id: "dk-helmets", label: "Safety Helmets", tasks: [
+                    { j: "Renew safety helmets", p: "Deck/CM", i: "2 yr" },
+                    { j: "Inspect condition of helmets & straps", p: "Deck/CM", i: "3 mo" },
+                ]
+            },
+            {
+                id: "dk-pladder", label: "Pilot Ladders", tasks: [
+                    { j: "Renew pilot ladders", p: "Deck/CM", i: "30 mo" },
+                    { j: "Inspect steps, spreaders, side ropes", p: "Deck/CM", i: "1 mo" },
+                    { j: "Check certification & tag details", p: "Deck/CM", i: "6 mo" },
+                ]
+            },
             { id: "dk-hpu1", label: "Hyd Pump Unit FWD (HC)", tasks: T_HYDPU },
             { id: "dk-hpu2", label: "Hyd Pump Unit FWD", tasks: T_HYDPU },
             { id: "dk-hpu3", label: "Hyd Pump Unit AFT", tasks: T_HYDPU },

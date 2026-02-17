@@ -67,6 +67,13 @@ const T_BVALVE = [
     { j: "Inspect valve body and flanges", p: "Eng/2E", i: "6 mo" },
 ];
 
+const T_CV_NRV = [
+    { j: "Overhaul non-return valve (clean, inspect seat/disc)", p: "Eng/2E", i: "2 yr" },
+    { j: "Check/test non-return function", p: "Eng/2E", i: "6 mo" },
+    { j: "Inspect valve body for corrosion/damage", p: "Deck/CM", i: "6 mo" },
+    { j: "Verify remote operation (if applicable)", p: "Eng/2E", i: "3 mo" },
+];
+
 export const DECK_TREE = [
     {
         id: "chain", label: "Chain Lockers", icon: "⚓", resp: "C/O", ch: [
@@ -127,6 +134,18 @@ export const DECK_TREE = [
         id: "cargo", label: "Cargo Holds", icon: "📦", resp: "C/O", ch: [
             { id: "dk-h1", label: "Cargo Hold No.1", tasks: T_HOLD }, { id: "dk-h2", label: "Cargo Hold No.2", tasks: T_HOLD },
             { id: "dk-h3", label: "Cargo Hold No.3", tasks: T_HOLD }, { id: "dk-h4", label: "Cargo Hold No.4", tasks: T_HOLD },
+        ]
+    },
+    {
+        id: "ch_valves", label: "Cargo Hold Bilge Valves", icon: "🔧", resp: "C/O", ch: [
+            { id: "cv-h1p", label: "Bilge NRV - CH 1 Port", tasks: T_CV_NRV },
+            { id: "cv-h1s", label: "Bilge NRV - CH 1 Stbd", tasks: T_CV_NRV },
+            { id: "cv-h2p", label: "Bilge NRV - CH 2 Port", tasks: T_CV_NRV },
+            { id: "cv-h2s", label: "Bilge NRV - CH 2 Stbd", tasks: T_CV_NRV },
+            { id: "cv-h3p", label: "Bilge NRV - CH 3 Port", tasks: T_CV_NRV },
+            { id: "cv-h3s", label: "Bilge NRV - CH 3 Stbd", tasks: T_CV_NRV },
+            { id: "cv-h4p", label: "Bilge NRV - CH 4 Port", tasks: T_CV_NRV },
+            { id: "cv-h4s", label: "Bilge NRV - CH 4 Stbd", tasks: T_CV_NRV },
         ]
     },
     {

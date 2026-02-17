@@ -11,12 +11,10 @@ export default function MainLayout({ children }) {
     }
 
     return (
-        <div className="flex h-screen bg-background text-foreground overflow-hidden font-sans antialiased">
+        <div className="flex h-screen text-foreground overflow-hidden font-sans antialiased relative">
+            {/* Overlay for readability if needed, or just let gradient shine */}
             <Sidebar />
-            <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-                {/* Mobile Header (Hidden on desktop ideally, or just top bar) */}
-                {/* We can actullay put a TopBar here if we want, or just let the pages have headers */}
-
+            <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative z-10">
                 <div className="flex-1 overflow-auto relative custom-scrollbar">
                     {children}
                 </div>

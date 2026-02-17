@@ -41,34 +41,34 @@ export default function Sidebar() {
     const visibleDeck = deckTree.filter(g => canSeeDeck(g.id));
 
     return (
-        <aside className="w-64 bg-background border-r border-border flex flex-col h-screen text-sm select-none">
+        <aside className="w-64 glass border-r border-white/10 flex flex-col h-screen text-sm select-none relative z-50">
             {/* Header / User Info */}
-            <div className="p-4 border-b border-border bg-card/50">
+            <div className="p-4 border-b border-white/10 bg-white/5 backdrop-blur-sm">
                 <div className="flex items-center gap-3 mb-3">
                     <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shadow-lg border-2"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shadow-lg border border-white/20"
                         style={{ backgroundColor: `${user.color}20`, borderColor: user.color }}
                     >
                         {user.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                         <div className="font-bold truncate" style={{ color: user.color }}>{user.rank}</div>
-                        <div className="text-xs text-muted-foreground truncate">{role.lbl}</div>
+                        <div className="text-xs text-blue-200/60 truncate">{role.lbl}</div>
                     </div>
-                    <button onClick={logout} className="text-muted-foreground hover:text-destructive transition-colors">
+                    <button onClick={logout} className="text-blue-200/50 hover:text-red-400 transition-colors">
                         <LogOut size={16} />
                     </button>
                 </div>
 
                 {/* Vessel Selector */}
-                <div className="relative">
+                <div className="relative group">
                     <Ship size={14} className="absolute left-2.5 top-2.5 text-primary" />
                     <select
                         value={vid}
                         onChange={(e) => setVid(e.target.value)}
-                        className="w-full bg-background border border-border rounded-md py-1.5 pl-8 pr-2 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-primary"
+                        className="w-full bg-black/30 border border-white/10 rounded-md py-1.5 pl-8 pr-2 text-xs font-semibold text-blue-100 focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all hover:bg-black/40"
                     >
-                        {ships.map(s => <option key={s.id} value={s.id}>{s.n}</option>)}
+                        {ships.map(s => <option key={s.id} value={s.id} className="bg-slate-900 text-white">{s.n}</option>)}
                     </select>
                 </div>
             </div>
@@ -87,7 +87,7 @@ export default function Sidebar() {
                     <div className="mt-4">
                         <div
                             className={clsx(
-                                "px-4 py-2 text-xs font-bold text-muted-foreground flex items-center cursor-pointer hover:text-foreground transition-colors",
+                                "px-4 py-2 text-xs font-bold text-blue-200/50 flex items-center cursor-pointer hover:text-white transition-colors",
                                 expandedEngine && "text-primary"
                             )}
                             onClick={() => setExpandedEngine(!expandedEngine)}
@@ -101,7 +101,7 @@ export default function Sidebar() {
                                 {visibleEngine.map(group => (
                                     <div key={group.id} className="mb-1">
                                         <div
-                                            className="px-3 py-1.5 flex items-center text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+                                            className="px-3 py-1.5 flex items-center text-xs text-blue-200/60 hover:text-white cursor-pointer transition-colors"
                                             onClick={() => toggleGroup(group.id)}
                                         >
                                             {expandedGroups[group.id] ? <ChevronDown size={12} className="mr-2 opacity-70" /> : <ChevronRight size={12} className="mr-2 opacity-70" />}
@@ -110,7 +110,7 @@ export default function Sidebar() {
                                         </div>
 
                                         {expandedGroups[group.id] && (
-                                            <div className="pl-8 border-l border-border ml-5 space-y-0.5">
+                                            <div className="pl-8 border-l border-white/10 ml-5 space-y-0.5">
                                                 {group.ch.map(item => (
                                                     <div
                                                         key={item.id}
@@ -118,8 +118,8 @@ export default function Sidebar() {
                                                         className={clsx(
                                                             "px-2 py-1.5 rounded-sm cursor-pointer text-xs transition-colors truncate",
                                                             (selectedItem?.id === item.id && activePage === "detail")
-                                                                ? "bg-primary/10 text-primary font-medium"
-                                                                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                                                                ? "bg-primary/20 text-primary font-medium border border-primary/20"
+                                                                : "text-blue-200/50 hover:bg-white/5 hover:text-white"
                                                         )}
                                                     >
                                                         {item.label}
@@ -139,7 +139,7 @@ export default function Sidebar() {
                     <div className="mt-2">
                         <div
                             className={clsx(
-                                "px-4 py-2 text-xs font-bold text-muted-foreground flex items-center cursor-pointer hover:text-foreground transition-colors",
+                                "px-4 py-2 text-xs font-bold text-blue-200/50 flex items-center cursor-pointer hover:text-white transition-colors",
                                 expandedDeck && "text-primary"
                             )}
                             onClick={() => setExpandedDeck(!expandedDeck)}
@@ -153,7 +153,7 @@ export default function Sidebar() {
                                 {visibleDeck.map(group => (
                                     <div key={group.id} className="mb-1">
                                         <div
-                                            className="px-3 py-1.5 flex items-center text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+                                            className="px-3 py-1.5 flex items-center text-xs text-blue-200/60 hover:text-white cursor-pointer transition-colors"
                                             onClick={() => toggleGroup(group.id)}
                                         >
                                             {expandedGroups[group.id] ? <ChevronDown size={12} className="mr-2 opacity-70" /> : <ChevronRight size={12} className="mr-2 opacity-70" />}
@@ -162,7 +162,7 @@ export default function Sidebar() {
                                         </div>
 
                                         {expandedGroups[group.id] && (
-                                            <div className="pl-8 border-l border-border ml-5 space-y-0.5">
+                                            <div className="pl-8 border-l border-white/10 ml-5 space-y-0.5">
                                                 {group.ch.map(item => (
                                                     <div
                                                         key={item.id}
@@ -170,8 +170,8 @@ export default function Sidebar() {
                                                         className={clsx(
                                                             "px-2 py-1.5 rounded-sm cursor-pointer text-xs transition-colors truncate",
                                                             (selectedItem?.id === item.id && activePage === "detail")
-                                                                ? "bg-primary/10 text-primary font-medium"
-                                                                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                                                                ? "bg-primary/20 text-primary font-medium border border-primary/20"
+                                                                : "text-blue-200/50 hover:bg-white/5 hover:text-white"
                                                         )}
                                                     >
                                                         {item.label}
@@ -200,7 +200,7 @@ export default function Sidebar() {
             </div>
 
             {/* Footer */}
-            <div className="p-3 text-[10px] text-muted-foreground border-t border-border text-center bg-card/30">
+            <div className="p-3 text-[10px] text-blue-200/40 border-t border-white/5 text-center bg-black/20 backdrop-blur-sm">
                 CANBAZ NOZZUL PMS v3.0 <br />
                 IMO 9521899
             </div>
@@ -214,7 +214,9 @@ function NavItem({ icon, label, isActive, onClick, className }) {
             onClick={onClick}
             className={clsx(
                 "mx-2 px-3 py-2 rounded-md flex items-center gap-3 cursor-pointer transition-all",
-                isActive ? "bg-primary text-black font-bold shadow-md" : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                isActive
+                    ? "bg-primary text-black font-bold shadow-[0_0_15px_rgba(var(--primary),0.4)]"
+                    : "text-blue-200/60 hover:bg-white/10 hover:text-white",
                 className
             )}
         >

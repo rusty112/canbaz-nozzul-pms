@@ -44,18 +44,18 @@ export default function Dashboard() {
             {/* Header */}
             <header className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight mb-2 flex items-center gap-3">
+                    <h1 className="text-3xl font-black tracking-tight mb-2 flex items-center gap-3 text-white drop-shadow-md">
                         Dashboard
-                        {isOverdue && <span className="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full animate-pulse">ATTENTION</span>}
+                        {isOverdue && <span className="text-xs bg-red-500/80 backdrop-blur-sm text-white px-2 py-0.5 rounded-full animate-pulse border border-red-400/50">ATTENTION</span>}
                     </h1>
-                    <p className="text-muted-foreground">
+                    <p className="text-blue-100/70">
                         Welcome back, <span className="text-primary font-bold">{user.rank}</span>.
-                        Vessel status for <span className="text-foreground font-semibold">M/V {currentShip.n}</span>.
+                        Vessel status for <span className="text-white font-semibold">M/V {currentShip.n}</span>.
                         <span className="block text-xs mt-1 opacity-70">IMO: {currentShip.id === 'v1' ? '9521899' : '9112222'}</span>
                     </p>
                 </div>
-                <div className="text-right bg-card/50 p-3 rounded-lg border border-border/50">
-                    <div className="text-xs text-muted-foreground uppercase font-bold tracking-wider mb-1">System Date</div>
+                <div className="text-right glass p-3 rounded-lg">
+                    <div className="text-xs text-blue-200/60 uppercase font-bold tracking-wider mb-1">System Date</div>
                     <div className="text-xl font-mono text-primary font-bold">
                         {new Date().toLocaleDateString("en-GB", { day: '2-digit', month: 'short', year: 'numeric' })}
                     </div>
@@ -63,13 +63,14 @@ export default function Dashboard() {
             </header>
 
             {/* QUICK STATUS BANNER - New Design Request */}
-            <div className={`mb-8 p-6 rounded-xl border-2 flex items-center justify-between shadow-sm transition-all ${statusColor}`}>
+            {/* QUICK STATUS BANNER - New Design Request */}
+            <div className={`mb-8 p-6 rounded-xl border flex items-center justify-between shadow-lg transition-all backdrop-blur-md ${isOverdue ? 'bg-red-500/10 border-red-500/30 text-red-100' : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-100'}`}>
                 <div className="flex items-center gap-5">
-                    <div className={clsx("p-4 rounded-full bg-background border", isOverdue ? "border-red-500/30 text-red-500" : "border-emerald-500/30 text-emerald-500")}>
+                    <div className={clsx("p-4 rounded-full border shadow-inner", isOverdue ? "bg-red-500/20 border-red-500/30 text-red-500" : "bg-emerald-500/20 border-emerald-500/30 text-emerald-500")}>
                         {statusIcon}
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold tracking-tight">{statusTitle}</h2>
+                        <h2 className="text-2xl font-bold tracking-tight text-white">{statusTitle}</h2>
                         <p className="font-medium opacity-80">{statusDesc}</p>
                     </div>
                 </div>
@@ -110,16 +111,16 @@ export default function Dashboard() {
             {/* Bottom Sections */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Responsibilities */}
-                <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
-                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                        <span className="w-1 h-6 bg-primary rounded-full" />
+                <div className="glass rounded-xl p-6">
+                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-white">
+                        <span className="w-1 h-6 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
                         Responsibilities
                     </h3>
                     <div className="space-y-4">
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-blue-100/70">
                             You are logged in with <strong style={{ color: user.color }}>{role.lbl}</strong> privileges.
                         </p>
-                        <div className="bg-accent/30 rounded-lg p-4 text-xs space-y-2 border border-border/50 text-muted-foreground">
+                        <div className="bg-black/20 rounded-lg p-4 text-xs space-y-2 border border-white/5 text-blue-200/60">
                             <p>• Navigate using the sidebar to access department specific maintenance trees.</p>
                             <p>• Engine data simulates running hours and component status.</p>
                             <p>• Deck data follows GV-05-A standard checklists.</p>
@@ -129,9 +130,9 @@ export default function Dashboard() {
                 </div>
 
                 {/* Vessel Status Details */}
-                <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
-                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                        <span className="w-1 h-6 bg-secondary-foreground rounded-full" />
+                <div className="glass rounded-xl p-6">
+                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-white">
+                        <span className="w-1 h-6 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
                         Vessel Operational Status
                     </h3>
                     <div className="space-y-4">
@@ -148,16 +149,16 @@ export default function Dashboard() {
 
 function StatCard({ icon, label, value, sub, color, trend }) {
     return (
-        <div className="bg-card border border-border rounded-xl p-6 flex flex-col items-center text-center hover:border-primary/50 transition-all shadow-sm group cursor-default">
-            <div className={`p-4 rounded-full bg-accent/50 mb-4 ${color} group-hover:scale-110 transition-transform duration-300`}>
+        <div className="glass-card rounded-xl p-6 flex flex-col items-center text-center hover:border-primary/50 transition-all group cursor-default relative overflow-hidden">
+            <div className={`p-4 rounded-full bg-white/5 mb-4 ${color} group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
                 {icon}
             </div>
-            <div className="text-3xl font-black mb-1">{value}</div>
-            <div className="text-sm font-bold text-foreground mb-1">{label}</div>
-            <div className="text-xs text-muted-foreground uppercase tracking-wide mb-3">{sub}</div>
+            <div className="text-3xl font-black mb-1 text-white">{value}</div>
+            <div className="text-sm font-bold text-blue-100 mb-1">{label}</div>
+            <div className="text-xs text-blue-200/50 uppercase tracking-wide mb-3">{sub}</div>
 
-            <div className="w-full h-px bg-border/50 mb-3" />
-            <div className="text-[10px] font-medium text-muted-foreground flex items-center gap-1">
+            <div className="w-full h-px bg-white/10 mb-3" />
+            <div className="text-[10px] font-medium text-blue-200/60 flex items-center gap-1 group-hover:text-primary transition-colors">
                 {trend}
             </div>
         </div>
@@ -166,12 +167,12 @@ function StatCard({ icon, label, value, sub, color, trend }) {
 
 function StatusRow({ label, value, status }) {
     return (
-        <div className="flex justify-between items-center p-3 rounded-lg border border-border/30 hover:bg-accent/30 transition-colors">
-            <span className="text-sm font-medium text-muted-foreground">{label}</span>
+        <div className="flex justify-between items-center p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors">
+            <span className="text-sm font-medium text-blue-200/70">{label}</span>
             <span className={clsx("text-sm font-bold font-mono",
-                status === 'good' && "text-emerald-500",
-                status === 'bad' && "text-red-500",
-                status === 'white' && "text-foreground"
+                status === 'good' && "text-emerald-400 drop-shadow-sm",
+                status === 'bad' && "text-red-400 drop-shadow-sm",
+                status === 'white' && "text-white"
             )}>{value}</span>
         </div>
     )

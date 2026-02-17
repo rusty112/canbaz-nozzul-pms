@@ -1,47 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
- 
+    --foreground: 210 40% 98%;
+
     --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
- 
+    --card-foreground: 210 40% 98%;
+
     --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
- 
-    --primary: 48 96% 53%; /* Gold/Yellow equivalent to #eab308 / #fbbf24 range */
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 45 93% 47%;
+    /* Gold/Yellow updated to be more vibrant */
     --primary-foreground: 224 71% 4%;
- 
-    --secondary: 222 47% 11%;
-    --secondary-foreground: 213 31% 91%;
- 
-    --muted: 223 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
- 
-    --accent: 216 34% 17%;
+
+    --accent: 217 33% 17%;
     --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 63% 31%;
+
+    --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
- 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-    --ring: 216 34% 17%;
- 
-    --radius: 0.5rem;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 71% 4%;
+
+    --radius: 0.75rem;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-[#020617] text-foreground font-sans min-h-screen selection:bg-primary selection:text-black;
+    background-image: radial-gradient(circle at 50% 0%, #172554 0%, #020617 60%);
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-md border border-white/5 shadow-lg;
+  }
+
+  .glass-input {
+    @apply bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40 hover:bg-black/30 transition-all backdrop-blur-sm;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20;
   }
 }

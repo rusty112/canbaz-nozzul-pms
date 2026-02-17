@@ -20,78 +20,87 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#060b14] p-4 relative overflow-hidden">
-            {/* Background Decor */}
-            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-                <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-900 rounded-full blur-[150px]" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-amber-900 rounded-full blur-[150px]" />
+        <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+            {/* Ambient Background Effects */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '4s' }} />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '6s' }} />
             </div>
 
-            <div className="w-full max-w-sm z-10">
-                <div className="text-center mb-10">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 shadow-2xl mb-6">
-                        <span className="text-5xl">⚓</span>
+            <div className="w-full max-w-md z-10">
+                <div className="text-center mb-10 relative">
+                    <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl glass mb-6 relative group overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <span className="text-6xl drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">⚓</span>
                     </div>
-                    <h1 className="text-3xl font-black tracking-[0.2em] text-primary mb-2">CANBAZ NOZZUL PMS</h1>
-                    <p className="text-xs text-muted-foreground uppercase tracking-widest">Planned Maintenance System v3.0</p>
+                    <h1 className="text-4xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-lg">CANBAZ NOZZUL</h1>
+                    <div className="flex items-center justify-center gap-3">
+                        <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
+                        <p className="text-xs text-blue-200/70 uppercase tracking-[0.3em] font-medium">PMS System v3.0</p>
+                        <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
+                    </div>
                 </div>
 
-                <div className="bg-card/80 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl">
-                    <form onSubmit={handleLogin} className="space-y-6">
+                <div className="glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+                    {/* Glossy shine effect */}
+                    <div className="absolute -top-[150%] -left-[50%] w-[200%] h-[200%] bg-gradient-to-b from-white/5 to-transparent rotate-45 pointer-events-none" />
+
+                    <form onSubmit={handleLogin} className="space-y-6 relative z-10">
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider ml-1">Select Officer</label>
-                            <div className="relative">
-                                <User className="absolute left-3 top-2.5 text-muted-foreground" size={16} />
+                            <label className="text-[10px] font-bold text-blue-200/70 uppercase tracking-wider ml-1">Select Officer</label>
+                            <div className="relative group">
+                                <User className="absolute left-4 top-3.5 text-blue-200/50 group-focus-within:text-primary transition-colors" size={18} />
                                 <select
                                     value={selectedSpecId}
                                     onChange={(e) => { setSelectedSpecId(e.target.value); setError(""); }}
-                                    className="w-full bg-black/40 border border-border rounded-lg py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                    className="w-full glass-input rounded-xl py-3.5 pl-12 pr-4 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-primary/50"
                                 >
-                                    <option value="">-- Function --</option>
+                                    <option value="" className="bg-slate-900 text-gray-400">-- Select Identity --</option>
                                     {USERS.map(u => (
-                                        <option key={u.id} value={u.id}>{u.name} ({u.rank})</option>
+                                        <option key={u.id} value={u.id} className="bg-slate-900 text-white">{u.name} ({u.rank})</option>
                                     ))}
                                 </select>
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider ml-1">Security PIN</label>
-                            <div className="relative">
-                                <Lock className="absolute left-3 top-2.5 text-muted-foreground" size={16} />
+                            <label className="text-[10px] font-bold text-blue-200/70 uppercase tracking-wider ml-1">Security PIN</label>
+                            <div className="relative group">
+                                <Lock className="absolute left-4 top-3.5 text-blue-200/50 group-focus-within:text-primary transition-colors" size={18} />
                                 <input
                                     type="password"
                                     value={pin}
                                     onChange={(e) => { setPin(e.target.value); setError(""); }}
                                     placeholder="••••"
-                                    className="w-full bg-black/40 border border-border rounded-lg py-2.5 pl-10 pr-4 text-sm font-mono tracking-[0.5em] text-center focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                    className="w-full glass-input rounded-xl py-3.5 pl-12 pr-4 text-sm font-mono tracking-[0.5em] text-center text-white placeholder-white/20 focus:outline-none focus:ring-1 focus:ring-primary/50"
                                 />
                             </div>
                         </div>
 
                         {error && (
-                            <div className="text-red-500 text-xs text-center font-medium bg-red-500/10 py-2 rounded-md border border-red-500/20">
+                            <div className="text-red-400 text-xs text-center font-medium bg-red-500/10 py-2.5 rounded-lg border border-red-500/20 backdrop-blur-sm animate-in fade-in slide-in-from-top-1">
                                 {error}
                             </div>
                         )}
 
                         <button
                             type="submit"
-                            className="w-full bg-primary text-black font-bold py-3 rounded-lg hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#060b14] transition-all transform active:scale-95"
+                            className="w-full bg-primary text-black font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all transform active:scale-[0.98] mt-2 relative overflow-hidden group"
                         >
+                            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
                             ACCESS SYSTEM
                         </button>
                     </form>
                 </div>
 
                 {/* Roles Grid */}
-                <div className="mt-8 grid grid-cols-2 gap-3 opacity-60">
+                <div className="mt-8 grid grid-cols-2 gap-3 opacity-80">
                     {USERS.map(u => (
-                        <div key={u.id} className="flex items-center gap-3 bg-card/30 rounded p-2 border border-white/5">
-                            <span className="text-lg">{u.icon}</span>
+                        <div key={u.id} className="flex items-center gap-3 glass-card rounded-lg p-3 hover:bg-white/5 transition-colors cursor-help group">
+                            <span className="text-lg group-hover:scale-110 transition-transform">{u.icon}</span>
                             <div className="overflow-hidden">
                                 <div className="text-[10px] font-bold" style={{ color: u.color }}>{u.rank}</div>
-                                <div className="text-[8px] text-muted-foreground truncate">{ROLES[u.id].lbl}</div>
+                                <div className="text-[8px] text-blue-200/50 truncate group-hover:text-blue-200 transition-colors">{ROLES[u.id].lbl}</div>
                             </div>
                         </div>
                     ))}

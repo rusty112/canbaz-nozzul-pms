@@ -151,21 +151,26 @@ export default function MaintenanceDetail() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {selectedItem.tasks.map((t, i) => (
-                    <tr key={i} className="hover:bg-accent/50 transition-colors">
-                      <td className="px-4 py-3 text-center">
-                        <div className="w-6 h-6 mx-auto rounded bg-emerald-500/20 text-emerald-500 flex items-center justify-center border border-emerald-500/30">
-                          <CheckCircle2 size={14} strokeWidth={3} />
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 font-medium text-foreground">{t.j || 'Job'}</td>
-                      <td className="px-4 py-3 text-center text-xs font-bold text-muted-foreground">{t.p}</td>
-                      <td className="px-4 py-3 text-center font-mono text-xs text-primary">{t.i}</td>
-                      <td className="px-4 py-3 text-right font-mono text-xs text-muted-foreground">
-                        20 Jan 2026
-                      </td>
-                    </tr>
-                  ))}
+                  {selectedItem.tasks.map((t, i) => {
+                    const taskKey = `${vid}-${selectedItem.id}-task-${i}`;
+                    const taskData = complianceData ? complianceData[taskKey] : null;
+
+                    return (
+                      <tr key={i} className="hover:bg-accent/50 transition-colors">
+                        <td className="px-4 py-3 text-center">
+                          <div className="w-6 h-6 mx-auto rounded bg-emerald-500/20 text-emerald-500 flex items-center justify-center border border-emerald-500/30">
+                            <CheckCircle2 size={14} strokeWidth={3} />
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 font-medium text-foreground">{t.j || 'Job'}</td>
+                        <td className="px-4 py-3 text-center text-xs font-bold text-muted-foreground">{t.p}</td>
+                        <td className="px-4 py-3 text-center font-mono text-xs text-primary">{t.i}</td>
+                        <td className="px-4 py-3 text-right font-mono text-xs text-muted-foreground">
+                          {taskData ? taskData.lastOH : '---'}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

@@ -18,18 +18,15 @@ export const AppProvider = ({ children }) => {
     const [complianceData, setComplianceData] = useState({});
 
     // Initialize Compliance Data on Mount
+    // Initialize Compliance Data on Mount
     useEffect(() => {
         const initialData = {};
 
-        // Helper to process tree
-        const processTree = (tree, prefix) => {
+        const processTree = (tree) => {
             tree.forEach(group => {
                 if (group.ch) {
                     group.ch.forEach(item => {
-                        // Generate data for this item
-                        // We store it keyed by "vid-itemId-unitIdx" or just "vid-itemId"
-                        // For multi-unit items (engine), we generate for each unit.
-
+                        // Handle Components with Units (Engine)
                         if (item.units) {
                             for (let i = 1; i <= item.units; i++) {
                                 SHIPS.forEach(ship => {
@@ -37,20 +34,24 @@ export const AppProvider = ({ children }) => {
                                     initialData[key] = generateComplianceData(item.id, item.iv, i);
                                 });
                             }
-                        } else if (item.tasks) {
-                            // Deck items with tasks
-                            // We might want to "fake" task completion dates too?
-                            // The original app didn't have dates for deck tasks, just "Done" checkbox.
-                            // We'll keep it simple for deck tasks for now, maybe just "last done" date if needed.
-                            // But the user asked specifically about "Cylinder Head" style items (engine).
+                        }
+
+                        // Handle Items with Tasks (Deck)
+                        if (item.tasks) {
+                            item.tasks.forEach((task, tIdx) => {
+                                SHIPS.forEach(ship => {
+                                    const key = `${ship.id}-${item.id}-task-${tIdx}`;
+                                    initialData[key] = generateComplianceData(item.id, task.i, 0);
+                                });
+                            });
                         }
                     });
                 }
             });
         };
 
-        processTree(ENGINE_TREE, 'eng');
-        // processTree(DECK_TREE, 'dek'); // Deck is task based, different logic maybe
+        processTree(ENGINE_TREE);
+        processTree(DECK_TREE);
 
         setComplianceData(initialData);
     }, []);

@@ -10,7 +10,7 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [vid, setVid] = useState("v1"); // Default vessel: ORCUN C
+    const [vid, setVid] = useState("v3"); // Default vessel: ATA
     const [activePage, setActivePage] = useState("login"); // login, dash, detail, rs
     const [selectedItem, setSelectedItem] = useState(null); // For detail view
 

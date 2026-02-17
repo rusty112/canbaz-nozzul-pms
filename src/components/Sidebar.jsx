@@ -202,7 +202,7 @@ export default function Sidebar() {
             {/* Footer */}
             <div className="p-3 text-[10px] text-muted-foreground border-t border-border text-center bg-card/30">
                 CANBAZ NOZZUL PMS v3.0 <br />
-                IMO 1876255
+                IMO 9521899
             </div>
         </aside>
     );

@@ -51,7 +51,7 @@ export default function Dashboard() {
                     <p className="text-muted-foreground">
                         Welcome back, <span className="text-primary font-bold">{user.rank}</span>.
                         Vessel status for <span className="text-foreground font-semibold">M/V {currentShip.n}</span>.
-                        <span className="block text-xs mt-1 opacity-70">IMO: {currentShip.id === 'v1' ? '1876255' : '9112222'}</span>
+                        <span className="block text-xs mt-1 opacity-70">IMO: {currentShip.id === 'v1' ? '9521899' : '9112222'}</span>
                     </p>
                 </div>
                 <div className="text-right bg-card/50 p-3 rounded-lg border border-border/50">

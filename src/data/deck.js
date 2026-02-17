@@ -59,6 +59,14 @@ const T_ACCLAD = [
     { j: "Check safety devices & condition", p: "Eng/2E", i: "3 mo" },
 ];
 
+const T_BVALVE = [
+    { j: "Cycle valve full open/close to ensure operation", p: "Eng/2E", i: "3 mo" },
+    { j: "Grease stem and actuator mechanism", p: "Eng/2E", i: "3 mo" },
+    { j: "Check hydraulic lines for leakage/corrosion", p: "Eng/2E", i: "3 mo" },
+    { j: "Verify remote position indicator accuracy", p: "Eng/2E", i: "6 mo" },
+    { j: "Inspect valve body and flanges", p: "Eng/2E", i: "6 mo" },
+];
+
 export const DECK_TREE = [
     {
         id: "chain", label: "Chain Lockers", icon: "⚓", resp: "C/O", ch: [
@@ -99,6 +107,20 @@ export const DECK_TREE = [
                     { j: "OH all ventilators for deck & accommodation", p: "Deck/CM", i: "1 yr" },
                 ]
             },
+        ]
+    },
+    {
+        id: "b_valves", label: "Ballast Valves", icon: "🔧", resp: "C/O", ch: [
+            { id: "bv-db1p", label: "Ballast Valve - DB 1 Port", tasks: T_BVALVE },
+            { id: "bv-db1s", label: "Ballast Valve - DB 1 Stbd", tasks: T_BVALVE },
+            { id: "bv-db2p", label: "Ballast Valve - DB 2 Port", tasks: T_BVALVE },
+            { id: "bv-db2s", label: "Ballast Valve - DB 2 Stbd", tasks: T_BVALVE },
+            { id: "bv-db3p", label: "Ballast Valve - DB 3 Port", tasks: T_BVALVE },
+            { id: "bv-db3s", label: "Ballast Valve - DB 3 Stbd", tasks: T_BVALVE },
+            { id: "bv-db4p", label: "Ballast Valve - DB 4 Port", tasks: T_BVALVE },
+            { id: "bv-db4s", label: "Ballast Valve - DB 4 Stbd", tasks: T_BVALVE },
+            { id: "bv-fpt", label: "Ballast Valve - FPT", tasks: T_BVALVE },
+            { id: "bv-apt", label: "Ballast Valve - APT", tasks: T_BVALVE },
         ]
     },
     {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Activity, Anchor, Shield, AlertTriangle, CheckCircle, Ship, AlertOctagon } from 'lucide-react';
+import { Activity, Anchor, Shield, AlertTriangle, CheckCircle, Ship, AlertOctagon, FileText } from 'lucide-react';
 import clsx from 'clsx';
 import { parse, isBefore } from 'date-fns';
 
@@ -155,7 +155,21 @@ export default function Dashboard() {
 
                         <StatusRow label="Next Port" value="Istanbul, TR" status="white" />
                         <StatusRow label="ETA" value="24 Feb 2026 14:00" status="white" />
-                        <StatusRow label="PMS Certification" value="Valid until Dec 2026" status="good" />
+                        <button
+                            onClick={() => window.open('/certificate.pdf.pdf', '_blank')}
+                            className="w-full flex justify-between items-center p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-primary/10 hover:border-primary/30 transition-all group/cert cursor-pointer"
+                        >
+                            <span className="text-sm font-medium text-blue-200/70 flex items-center gap-2">
+                                <FileText size={16} className="text-primary" />
+                                PMS Certification
+                            </span>
+                            <span className="text-sm font-bold font-mono text-emerald-400 drop-shadow-sm flex items-center gap-2">
+                                Valid until Dec 2026
+                                <span className="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded-full border border-primary/30 group-hover/cert:bg-primary/30 transition-colors">
+                                    VIEW PDF
+                                </span>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
